@@ -1,0 +1,30 @@
+{
+  "name": "enginoClient",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server --inline --hot --host localhost --port 8081",
+    "build:production": "cross-env NODE_ENV=production webpack -p"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cross-env": "^1.0.7",
+    "react": "^0.14.8",
+    "react-dom": "^0.14.8",
+    "socket.io": "^1.4.5"
+  },
+  "devDependencies": {
+    "css-loader": "^0.23.1",
+    "json-loader": "^0.5.4",
+    "livescript": "^1.4.0",
+    "livescript-loader": "^0.1.5",
+    "style-loader": "^0.13.0",
+    "stylus-loader": "^1.5.1",
+    "webpack": "^1.12.13",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
