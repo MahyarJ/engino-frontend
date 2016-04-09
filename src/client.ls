@@ -1,7 +1,8 @@
 require! {
   'socket.io-client'
-  'react': React
+  'react': {createClass}: React
   'react-dom': ReactDom
+  './lib/react': {el, div, h1, h2}
 }
 
 name = \Developer
@@ -12,17 +13,6 @@ io.on \message, (data) ->
   io.emit \message,
     name: name
     body: 'Got it!'
-
-App = React.createClass do
-  displayName: \App
-  render: ->
-    React.createElement \div,
-      className: "clickable"
-      children: "Click Me"
-      onClick: (event) ->
-        console.log \Clicked, event
-
-ReactDom.render React.createElement(App, {}), document.getElementById('pg')
 
 # Now, in the client and developer tool you just can type this:
 # soc.emit('message', {name: 'Mahyar', body: 'Hi'})
