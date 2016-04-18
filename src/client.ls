@@ -1,8 +1,10 @@
 require! {
   'socket.io-client'
-  'react': {createClass}: React
-  'react-dom': ReactDom
-  './lib/react': {el, div, h1, h2}
+  # 'react': {createClass}: React
+  # 'react-dom': ReactDom
+  # 'redux': { createStore }: Redux
+  # './lib/react': {el, div, h1, h2}
+  './namespaces/testModule/incrementor'
 }
 
 name = \Developer
