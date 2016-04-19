@@ -5,7 +5,10 @@ require! {
   # 'redux': { createStore }: Redux
   # './lib/react': {el, div, h1, h2}
   './namespaces/testModule/incrementor'
+  'react-tap-event-plugin': injectTapEventPlugin
 }
+
+injectTapEventPlugin()
 
 name = \Developer
 
