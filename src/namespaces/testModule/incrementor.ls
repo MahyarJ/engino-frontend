@@ -5,8 +5,10 @@ require! {
   'react-dom': ReactDom
   '../../lib/react': { el, div, h1, h2 }
   'redux': { createStore }: Redux
+  './incrementor.styl': css
 }
 
+# This is the reducer that make the rules
 counter = (state = 0, action) ->
   switch action.type
     | \increment => state + 1
@@ -28,6 +30,7 @@ console.log \newState, store.getState()
 do render = ->
   ReactDom.render do
     div do
+      className: css.incrementorBtn
       children: store.getState()
       onClick: (event) ->
         store.dispatch do
