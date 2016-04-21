@@ -1,7 +1,8 @@
 # This is an example of React object creating
-
 # ----------------------------------------------------------
-
+# If this file was NOT here,
+# the react functionality was as below:
+#
 # App = React.createClass do
 #   displayName: \App
 #   render: ->
@@ -10,8 +11,14 @@
 #       children: "Click Me"
 #       onClick: (event) ->
 #         console.log \Clicked, event
-
 # ReactDom.render React.createElement(App, {}), document.getElementById('pg')
+require! {
+  'react': { createClass }: React
+  'react-dom': ReactDom
+  '../../lib/react': { el, div, h1, h2 }
+  'redux': { createStore }: Redux
+}
+
 
 data =
   * id: 1
@@ -23,7 +30,6 @@ data =
   * id: 3
     author: "Mahyar Jamalabadi"
     text: "This is me :)"
-
 
 CommentBox = createClass do
   getInitialState: ->
