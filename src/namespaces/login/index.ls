@@ -45,6 +45,7 @@ LoginBox = createClass do
 
         FlatButton do
           label: 'Forget Your Password?'
+          className: css.forgetPassword
 
 ReactDom.render do
   el PG,  {}
