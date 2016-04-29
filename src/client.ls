@@ -7,7 +7,8 @@ require! {
   # './lib/react': {el, div, h1, h2}
   './lib/request'
   'react-tap-event-plugin': injectTapEventPlugin
-  './namespaces/testModule/incrementor'
+  # './namespaces/testModule/incrementor'
+  './namespaces/login'
 }
 
 injectTapEventPlugin()

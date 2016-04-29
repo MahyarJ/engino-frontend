@@ -13,7 +13,7 @@
 #         console.log \Clicked, event
 # ReactDom.render React.createElement(App, {}), document.getElementById('pg')
 require! {
-  'react': { createClass }: React
+  'react': { createClass, createFactory }: React
   'react-dom': ReactDom
   '../../lib/react': { el, div, h1, h2 }
   'redux': { createStore }: Redux
@@ -94,4 +94,4 @@ Comment = createClass do
 
 ReactDom.render do
   el CommentBox, {data}
-  document.getElementById('pg')
+  document.getElementById \pg
