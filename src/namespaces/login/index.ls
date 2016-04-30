@@ -4,12 +4,8 @@ require! {
   '../../lib/react': { el, div, h1, h2 }
   'redux': { createStore }: Redux
   './login.styl': css
-  'material-ui': { RaisedButton, TextField, FlatButton }
+  '../../lib/material-ui': { RaisedButton, TextField, FlatButton }: MUI
 }
-
-RaisedButton = createFactory RaisedButton
-TextField = createFactory TextField
-FlatButton = createFactory FlatButton
 
 PG = createClass do
   render: ->
