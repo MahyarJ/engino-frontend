@@ -83,27 +83,17 @@ Home = createClass do
 routes =
   path: \/
   component: PG  # This is the component that appears at first
-  indexRoute:
-    component: PG
+  # indexRoute:
+  #   component: PG
   childRoute:
     * path: \rp
       component: ResetPassword
     * path: \home
       component: Home
 
-    ...
-
 ReactDom.render do
   el Router,
     history: browserHistory
     routes: routes
 
-# ReactDom.render do
-#   el Router, { history: browserHistory, routes: routes }
-    # el Route, { path: \/, component: PG }
-
   document.getElementById \pg
-
-
-console.log ReactRouter
-

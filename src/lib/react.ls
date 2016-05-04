@@ -11,3 +11,4 @@ module.exports = makeEl =
   div: (params) -> makeEl.el \div, params
   h1:  (params) -> makeEl.el \h1, params
   h2:  (params) -> makeEl.el \h2, params
+  input:  (params) -> makeEl.el \input, params

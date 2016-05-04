@@ -15,11 +15,12 @@
 require! {
   'react': { createClass, createFactory }: React
   'react-dom': ReactDom
-  '../../lib/react': { el, div, h1, h2 }
+  '../../lib/react': { el, div, h1, h2, input }
   'redux': { createStore }: Redux
+  './comment.styl': css
 }
 
-
+# Look here: https://facebook.github.io/react/docs/tutorial.html
 data =
   * id: 1
     author: "Pete Hunt"
@@ -29,7 +30,7 @@ data =
     text: "This is another comment."
   * id: 3
     author: "Mahyar Jamalabadi"
-    text: "This is me :)"
+    text: "This is my comment also."
 
 CommentBox = createClass do
   getInitialState: ->
@@ -69,10 +70,58 @@ CommentList = createClass do
             children: comment.text
 
 CommentForm = createClass do
+  getInitialState: ->
+    return do
+      author: ''
+      text: ''
+
+  handleAuthorChange: (e) ->
+    @setState do
+      author: e.target.value
+
+  handleTextChange: (e) ->
+    @setState do
+      text: e.target.value
+
+  handleSubmit: (e) ->
+    e.preventDefault()
+    author = @state.author.trim()
+    text = @state.text.trim()
+    if !text or !author
+      return
+    else
+      # Send request to the server
+      console.log @state, 'The comment has been applied.'
+      @setState do
+        author: ''
+        text: ''
+
   render: ->
-    div do
+    el \form,
       className: \commentForm
-      children: "Hello this is a new CommentForm"
+      onSubmit: @handleSubmit
+      children:
+        h1 do
+          children: 'Leave Your Comment '
+
+        input do
+          className: css.fullWidth
+          type: \text
+          placeholder: "Your Name"
+          value: @state.author
+          onChange: @handleAuthorChange
+
+        input do
+          className: css.fullWidth
+          type: \text
+          placeholder: "Say somthing..."
+          value: @state.text
+          onChange: @handleTextChange
+
+        input do
+          className: css.fullWidth
+          type: \submit
+          value: "Post"
 
 Comment = createClass do
   render: ->
