@@ -1,13 +1,14 @@
 require! {
-  'react': { createClass, createFactory }: React
+  'react': { createClass, createFactory, createElement }: React
   'react-dom': ReactDom
-  '../../lib/react': { el, div, h1, h2 }
+  '../../lib/react': { el, div, h1, h2, rtr, rt }
   'redux': { createStore }: Redux
   './login.styl': css
   '../../lib/material-ui': { RaisedButton, TextField, FlatButton }: MUI
 
-  'react-router': { Router, Route, Link, browserHistory, hashHistory }: ReactRouter
+  'react-router': { Router, Route, Link, IndexRoute, browserHistory, hashHistory, Link }: ReactRouter
 }
+
 
 PG = createClass do
   render: ->
@@ -41,9 +42,11 @@ LoginBox = createClass do
           secondary: true
           fullWidth: true
 
-        FlatButton do
-          label: 'Forget Your Password?'
-          className: css.forgetPassword
+        createElement Link, {to: \rp, activeStyle: {color: \red}},
+          FlatButton do
+            label: 'Forget Your Password?'
+            className: css.forgetPassword
+
 
 ResetPassword = createClass do
   render: ->
@@ -66,7 +69,7 @@ ResetPassword = createClass do
 
 Home = createClass do
   render: ->
-    div do
+    React.DOM.div do
       className: css.loginBox
       children:
         RaisedButton do
@@ -79,21 +82,28 @@ Home = createClass do
 #   el LoginBox,  {}
 #   document.getElementById \pg
 
-
 routes =
-  path: \/
-  component: PG  # This is the component that appears at first
-  # indexRoute:
-  #   component: PG
-  childRoute:
-    * path: \rp
-      component: ResetPassword
-    * path: \home
-      component: Home
+  * path: \/
+    component: PG  # This is the component that appears at first
+    # indexRoute:
+    #   component: PG
+    # childRoutes:
+    #   * path: \rp
+    #     component: ResetPassword
+    #   * path: \home
+    #     component: Home
+
+  * path: \rp
+    component: ResetPassword
+  ...
 
 ReactDom.render do
-  el Router,
-    history: browserHistory
-    routes: routes
+  el Router, { history: browserHistory },
+    el Route, { path: \/, component: PG }
+    el Route, { path: \rp, component: ResetPassword }
+
+  # rtr { history: browserHistory },
+  #   rt { path: \/, component: PG }
+  #   rt { path: \rp, component: ResetPassword }
 
   document.getElementById \pg

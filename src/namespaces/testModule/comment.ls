@@ -34,11 +34,17 @@ data =
 
 CommentBox = createClass do
   getInitialState: ->
-    console.log \initiation:, @state
-    {}
+    data: null
 
-  componentWillMount: ->
-    console.log @props.data
+  handleCommentSubmit: (comment) ->
+    comments = @state.data or @props.data
+    # Before sending to server, we make UI optimisticly update
+    comment.id = Date.now()
+    newComments = comments.concat [comment]
+    console.log newComments
+    @setState data: newComments
+    # TODO: Submit to the server and refresh the list of comments
+    console.log "`#{comment.text}` by #{comment.author}, stored in server and list has been refreshed"
 
   render: ->
     div do
@@ -47,8 +53,9 @@ CommentBox = createClass do
         h1 do
           children: 'Comments:'
         el CommentList,
-          data: @props.data
-        el CommentForm
+          data: @state.data or @props.data
+        el CommentForm,
+          onCommentSubmit: @handleCommentSubmit
 
 CommentList = createClass do
   render: ->
@@ -56,13 +63,6 @@ CommentList = createClass do
       className: \commentList
       data: @props.data
       children:
-        # React.createElement Comment,
-        #   author: "Pete Hunt"
-        #   children: "This is one comment."
-        # React.createElement Comment,
-        #   author: "Jordan Walke"
-        #   children: "This is another comment."
-
         commentNodes = @props.data.map (comment) ->
           el Comment,
             author: comment.author
@@ -71,17 +71,13 @@ CommentList = createClass do
 
 CommentForm = createClass do
   getInitialState: ->
-    return do
-      author: ''
-      text: ''
+    return { author: '', text: ''}
 
   handleAuthorChange: (e) ->
-    @setState do
-      author: e.target.value
+    @setState { author: e.target.value }
 
   handleTextChange: (e) ->
-    @setState do
-      text: e.target.value
+    @setState { text: e.target.value }
 
   handleSubmit: (e) ->
     e.preventDefault()
@@ -90,11 +86,10 @@ CommentForm = createClass do
     if !text or !author
       return
     else
-      # Send request to the server
+      # Imagine request will send to the server here
       console.log @state, 'The comment has been applied.'
-      @setState do
-        author: ''
-        text: ''
+      @props.onCommentSubmit { author: author, text: text }
+      @setState { author: '', text: '' }
 
   render: ->
     el \form,
@@ -133,14 +128,7 @@ Comment = createClass do
           children: @props.author
         @props.children
 
-    # React.createElement \div,
-    #   className: \comment
-    #   children:
-    #     React.createElement \h2,
-    #       children: @props.author
-    #     @props.children
-
-
+# --------------------------------------
 ReactDom.render do
   el CommentBox, {data}
   document.getElementById \pg

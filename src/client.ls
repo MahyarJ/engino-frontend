@@ -9,8 +9,8 @@ require! {
   './lib/auth'
   'react-tap-event-plugin': injectTapEventPlugin
   # './namespaces/testModule/incrementor'
-  './namespaces/testModule/comment'
-  # './namespaces/login'
+  # './namespaces/testModule/comment'
+  './namespaces/login'
 }
 
 injectTapEventPlugin()
