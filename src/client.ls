@@ -1,12 +1,15 @@
 window.engino = {}
 
+requireAll = (requireContext) ->
+  helpers = {}
+  for filename in requireContext.keys!
+    name = filename.replace(/^\.\//, '').replace(/\.ls$/, '')
+    helpers[name] = requireContext filename
+  helpers
+
+lib = requireAll require.context './lib', false, /\.ls$/
+
 require! {
-  # 'react': {createClass}: React
-  # 'react-dom': ReactDom
-  # 'redux': { createStore }: Redux
-  # './lib/react': {el, div, h1, h2}
-  './lib/request'
-  './lib/auth'
   'react-tap-event-plugin': injectTapEventPlugin
   # './namespaces/testModule/incrementor'
   # './namespaces/testModule/comment'

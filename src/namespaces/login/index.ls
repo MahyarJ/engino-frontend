@@ -1,64 +1,62 @@
 require! {
-  'react': { createClass, createElement, DOM }: React
+  'react': { createClass, DOM }: React
   'react-dom': ReactDom
   'redux': { createStore }: Redux
   './login.styl': css
-  'material-ui': {
-    RaisedButton
-    TextField
-    FlatButton
-  }
-  'react-router': { Router, Route, Link, IndexRoute, browserHistory }: ReactRouter
+  'react-router': ReactRouter
+  'material-ui': MUI
 }
-
+{ div } = DOM
+{ Router, Route, Link, IndexRoute, browserHistory } = engino.createFactory ReactRouter
+{ RaisedButton, TextField, FlatButton } = engino.createFactory MUI
 
 LoginBox = createClass do
   render: ->
-    DOM.div {className: css.loginBox},
-      createElement TextField,
+    div {className: css.loginBox},
+      TextField do
         label: \Username
         fullWidth: true
         floatingLabelText: \Username
 
-      createElement TextField,
+      TextField do
         label: \Password
         fullWidth: true
         floatingLabelText: \Password
 
-      createElement RaisedButton,
+      RaisedButton do
         label: \Login
         secondary: true
         fullWidth: true
 
-      createElement Link, {to: \rp, activeStyle: {color: \red}},
-        createElement FlatButton,
+      Link {to: \rp, activeStyle: {color: \red}},
+        FlatButton do
           label: 'Forget Your Password?'
           className: css.forgetPassword
 
 
 ResetPassword = createClass do
   render: ->
-    DOM.div {className: css.loginBox},
-      createElement TextField,
+    div {className: css.loginBox},
+      TextField do
         label: 'Username or Email'
         fullWidth: true
         floatingLabelText: 'Username or Email'
 
-      createElement RaisedButton,
+      RaisedButton do
         label: 'Send Reset Password Email'
         primary: true
         fullWidth: true
 
-      createElement Link, {to: "/login"}, 
-        createElement FlatButton,
+      Link {to: "/login"}, 
+        FlatButton do
           label: 'Return'
           className: css.forgetPassword
 
 Home = createClass do
   render: ->
-    DOM.div {className: css.loginBox},
-      createElement Link, {to: "/login"}, 
-        createElement RaisedButton,
+    div {className: css.loginBox},
+      Link {to: "/login"}, 
+        RaisedButton do
           label: 'Go For Login'
           secondary: true
           fullWidth: true
@@ -66,9 +64,9 @@ Home = createClass do
 
 
 ReactDom.render do
-  createElement Router, { history: browserHistory },
-    createElement Route, { path: \/, component: Home }
-    createElement Route, { path: \rp, component: ResetPassword }
-    createElement Route, { path: \login, component: LoginBox }
+  Router { history: browserHistory },
+    Route { path: \/, component: Home }
+    Route { path: \rp, component: ResetPassword }
+    Route { path: \login, component: LoginBox }
 
   document.getElementById \pg
