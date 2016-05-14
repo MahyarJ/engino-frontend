@@ -11,9 +11,8 @@ lib = requireAll require.context './lib', false, /\.ls$/
 
 require! {
   'react-tap-event-plugin': injectTapEventPlugin
-  './namespaces/testModule/incrementor'
   # './namespaces/testModule/comment'
-  # './namespaces/pages'
+  './namespaces/pages'
   './app.styl': css
 }
 

@@ -1,12 +1,11 @@
 require! {
-  'react': { createClass, createFactory, createElement, DOM }: React
+  'react': { createClass, { div }: DOM }: React
   'react-router': ReactRouter
   './Login.styl': css
   'material-ui': MUI
   'material-ui/styles': MUIStyles
 }
 
-{ div } = DOM
 { Link } = engino.createFactory ReactRouter
 { RaisedButton, FlatButton, TextField } = engino.createFactory MUI
 
