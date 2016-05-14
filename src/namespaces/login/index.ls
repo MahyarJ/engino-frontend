@@ -19,8 +19,6 @@ muiTheme = getMuiTheme do
   palette:
     textColor: colors.pink900
 
-console.log muiTheme
-
 LoginBox = createClass do
   render: ->
     MuiThemeProvider { muiTheme },
@@ -49,7 +47,7 @@ LoginBox = createClass do
 
 ResetPassword = createClass do
   render: ->
-    createElement MuiThemeProvider, { muiTheme: getMuiTheme(muiTheme) },
+    MuiThemeProvider { muiTheme: getMuiTheme(muiTheme) },
       div {className: css.loginBox},
         TextField do
           label: 'Username or Email'
@@ -68,7 +66,7 @@ ResetPassword = createClass do
 
 Home = createClass do
   render: ->
-    createElement MuiThemeProvider, { muiTheme: getMuiTheme(muiTheme) },
+    MuiThemeProvider { muiTheme: getMuiTheme(muiTheme) },
       div {className: css.loginBox},
         Link {to: "/login"},
           RaisedButton do
@@ -80,7 +78,7 @@ Home = createClass do
 
 Portal = createClass do
   render: ->
-    createElement MuiThemeProvider, { muiTheme: getMuiTheme(muiTheme) },
+    MuiThemeProvider { muiTheme: getMuiTheme(muiTheme) },
       AppBar { title: 'پنل کاربری' }
 
 ReactDom.render do
