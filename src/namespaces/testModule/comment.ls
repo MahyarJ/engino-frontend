@@ -13,12 +13,13 @@
 #         console.log \Clicked, event
 # ReactDom.render React.createElement(App, {}), document.getElementById('pg')
 require! {
-  'react': { createClass, createFactory }: React
+  'react': { createClass, createElement, DOM }: React
   'react-dom': ReactDom
-  '../../lib/react': { el, div, h1, h2, input }
   'redux': { createStore }: Redux
   './comment.styl': css
 }
+
+{ div, h1, h2, input } = DOM
 
 # Look here: https://facebook.github.io/react/docs/tutorial.html
 data =
@@ -52,9 +53,9 @@ CommentBox = createClass do
       children:
         h1 do
           children: 'Comments:'
-        el CommentList,
+        createElement CommentList,
           data: @state.data or @props.data
-        el CommentForm,
+        createElement CommentForm,
           onCommentSubmit: @handleCommentSubmit
 
 CommentList = createClass do
@@ -64,7 +65,7 @@ CommentList = createClass do
       data: @props.data
       children:
         commentNodes = @props.data.map (comment) ->
-          el Comment,
+          createElement Comment,
             author: comment.author
             key: comment.id
             children: comment.text
@@ -92,7 +93,7 @@ CommentForm = createClass do
       @setState { author: '', text: '' }
 
   render: ->
-    el \form,
+    createElement \form,
       className: \commentForm
       onSubmit: @handleSubmit
       children:
@@ -130,5 +131,5 @@ Comment = createClass do
 
 # --------------------------------------
 ReactDom.render do
-  el CommentBox, {data}
+  createElement CommentBox, {data}
   document.getElementById \pg
