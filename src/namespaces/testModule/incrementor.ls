@@ -1,28 +1,39 @@
-# This is the example of adding a React object by Redux
-# -----------------------------------------------------------
 require! {
-  'react': { createClass }: React
+  'react': { createClass, createFactory, createElement, {div}:DOM }: React
   'react-dom': ReactDom
-  '../../lib/react': { el, div, h1, h2 }
+  'react-router': ReactRouter
   'redux': { createStore }: Redux
-  './incrementor.styl': css
-  'material-ui': { RaisedButton }
+  './Incrementor.styl': css
+  './reducers'
+
+  'material-ui': MUI
+  'material-ui/styles': MUIStyles
+  'react-redux': ReactRedux
 }
 
-RaisedButton = React.createFactory RaisedButton
-# This is the reducer that make the rules
-counter = (state = 0, action) ->
-  switch action.type
-    | \set => action.number
-    | \increment => state + 1
-    | \decrement => state - 1
-    | otherwise  => state
+{ Router, Route, Link, IndexRoute, browserHistory } = engino.createFactory ReactRouter
+{ RaisedButton, TextField, FlatButton, AppBar} = engino.createFactory MUI
+{ MuiThemeProvider, getMuiTheme, colors, darkBaseTheme } = engino.createFactory MUIStyles
+{ Provider, connect } = engino.createFactory ReactRedux
 
-# A store has 3 important methods
-# 1) store.getState() --> Returns current state
-# 2) store.dispatch( {type: \increment} ) --> most commonly used method lets you dispatch actions
-store = createStore counter
+createStore = if window.devToolsExtension
+  window.devToolsExtension! createStore
+else
+  createStore
+store = createStore reducers
 
+if module.hot?
+  module.hot.accept './reducers', ->
+    nextReducer = require './reducers'
+    store.replaceReducer nextReducer
+
+muiTheme = getMuiTheme do
+  isRtl: no
+  fontFamily: "Iransans, Yekan, Roboto"
+  palette:
+    textColor: colors.pink900
+
+# Begin awesomeness
 engino
 .request \incrementor/get
 .then (number) ->
@@ -30,26 +41,37 @@ engino
     type: \set
     number: number
 
-do render = ->
-  # div do
-  #   className: css.incrementorBtnOld
-  #   children: store.getState()
-  ReactDom.render do
+mapStateToHolderProps = (number) ->
+  { number }
+
+Holder = connect(mapStateToHolderProps, null) createClass do
+  displayName: "Holder"
+  render: ->
     RaisedButton do
-      label: store.getState()
+      label: @props.number + ""
       className: css.incrementorBtn
-      # primary: true
-      onClick: (event) ->
+      onClick: (event) ~>
         engino
         .request \incrementor/update, {inc: true}
-        .then (result) ->
+        .then (result) ~>
           unless result.success
-            store.dispatch do
+            @props.dispatch do
               type: \decrement
-        store.dispatch do
+        @props.dispatch do
           type: \increment
+
+
+do render = ->
+
+  ReactDom.render do
+    Provider { store },
+      MuiThemeProvider { muiTheme },
+        createElement Holder, {}
+
     document.getElementById \pg
 
 # 3) for subscribing into the state changing
 store.subscribe ->
   render()
+
+console.log store.getState!

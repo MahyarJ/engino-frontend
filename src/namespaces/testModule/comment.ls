@@ -1,17 +1,3 @@
-# This is an example of React object creating
-# ----------------------------------------------------------
-# If this file was NOT here,
-# the react functionality was as below:
-#
-# App = React.createClass do
-#   displayName: \App
-#   render: ->
-#     React.createElement \div,
-#       className: "clickable"
-#       children: "Click Me"
-#       onClick: (event) ->
-#         console.log \Clicked, event
-# ReactDom.render React.createElement(App, {}), document.getElementById('pg')
 require! {
   'react': { createClass, createElement, DOM }: React
   'react-dom': ReactDom

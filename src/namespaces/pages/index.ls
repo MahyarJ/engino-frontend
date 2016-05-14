@@ -5,6 +5,7 @@ require! {
   'redux': { createStore }: Redux
   '../login/Login'
   '../login/ResetPassword'
+  # '../testModule/Incrementor'
   './Home'
 
   'material-ui': MUI
@@ -17,7 +18,7 @@ require! {
 { MuiThemeProvider, getMuiTheme, colors, darkBaseTheme } = engino.createFactory MUIStyles
 
 muiTheme = getMuiTheme do
-  isRtl: yes
+  isRtl: no
   fontFamily: "Iransans, Yekan, Roboto"
   palette:
     textColor: colors.pink900
@@ -28,4 +29,5 @@ ReactDom.render do
       Route { path: \/, component: Home }
       Route { path: \rp, component: ResetPassword }
       Route { path: \login, component: Login }
+      Route { path: \inc, component: Incrementor }
   document.getElementById \pg
