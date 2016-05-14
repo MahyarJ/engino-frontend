@@ -3,10 +3,8 @@ require! {
   
   'react-router': ReactRouter
   
-  'material-ui': MUI
   'material-ui/styles': MUIStyles
   
-  'redux': { createStore }: Redux
   'react-redux': ReactRedux
   './store'
   './muiTheme'
@@ -17,8 +15,7 @@ require! {
   './pages/Home'
 }
 
-{ Router, Route, Link, IndexRoute, browserHistory } = engino.createFactory ReactRouter
-{ RaisedButton, TextField, FlatButton, AppBar} = engino.createFactory MUI
+{ Router, Route, browserHistory } = engino.createFactory ReactRouter
 { MuiThemeProvider } = engino.createFactory MUIStyles
 { Provider } = engino.createFactory ReactRedux
 

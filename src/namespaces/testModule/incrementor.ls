@@ -5,16 +5,14 @@ require! {
   'react-router': ReactRouter
 
   'material-ui': MUI
-  'material-ui/styles': MUIStyles
   
   'react-redux': ReactRedux
 
   './Incrementor.styl': css
 }
 
-{ Router, Route, Link, IndexRoute, browserHistory } = engino.createFactory ReactRouter
-{ RaisedButton, TextField, FlatButton, AppBar} = engino.createFactory MUI
-{ MuiThemeProvider, getMuiTheme, colors, darkBaseTheme } = engino.createFactory MUIStyles
+{ Link } = engino.createFactory ReactRouter
+{ RaisedButton } = engino.createFactory MUI
 { connect } = engino.createFactory ReactRedux
 
 mapStateToIncrementorProps = (number) ->

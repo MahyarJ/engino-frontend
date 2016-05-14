@@ -7,7 +7,7 @@ require! {
 }
 
 { Link } = engino.createFactory ReactRouter
-{ RaisedButton, FlatButton, TextField } = engino.createFactory MUI
+{ RaisedButton } = engino.createFactory MUI
 
 module.exports = Home = createClass do
   render: ->
