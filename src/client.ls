@@ -7,12 +7,12 @@ requireAll = (requireContext) ->
     helpers[name] = requireContext filename
   helpers
 
-lib = requireAll require.context './lib', false, /\.ls$/
+lib = requireAll require.context './lib', true, /\.ls$/
 
 require! {
   'react-tap-event-plugin': injectTapEventPlugin
   # './namespaces/testModule/comment'
-  './namespaces/pages'
+  './namespaces'
   './app.styl': css
 }
 

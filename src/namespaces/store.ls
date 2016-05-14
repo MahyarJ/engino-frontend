@@ -1,6 +1,6 @@
 require! {
 	# We should import them one by one?
-  '../testModule/reducers'
+  './testModule/reducer'
   'redux': { createStore }
 }
 
@@ -10,7 +10,7 @@ else
   createStore
 
 # combineReducers?
-module.exports = store = createStore reducers
+module.exports = store = createStore reducer
 
 # how to make them reload automatically?
 # if module.hot?

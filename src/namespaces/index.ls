@@ -8,24 +8,19 @@ require! {
   
   'redux': { createStore }: Redux
   'react-redux': ReactRedux
-  './initializeStore': store
+  './store'
+  './muiTheme'
 
-  '../login/Login'
-  '../login/ResetPassword'
-  '../testModule/Incrementor'
-  './Home'
+  './login/Login'
+  './login/ResetPassword'
+  './testModule/Incrementor'
+  './pages/Home'
 }
 
 { Router, Route, Link, IndexRoute, browserHistory } = engino.createFactory ReactRouter
 { RaisedButton, TextField, FlatButton, AppBar} = engino.createFactory MUI
-{ MuiThemeProvider, getMuiTheme, colors, darkBaseTheme } = engino.createFactory MUIStyles
+{ MuiThemeProvider } = engino.createFactory MUIStyles
 { Provider } = engino.createFactory ReactRedux
-
-muiTheme = getMuiTheme do
-  isRtl: no
-  fontFamily: "Iransans, Yekan, Roboto"
-  palette:
-    textColor: colors.pink900
 
 ReactDom.render do
   Provider { store },
