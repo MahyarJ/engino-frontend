@@ -36,11 +36,8 @@ module.exports = do ->
       * loader: \stylus
         test: /\.styl$/
 
-      # * loader: 'url-loader?limit=10000'
-      #   test: /\.(woff|otf|ttf)$/
-
-      # * loader: 'url-loader?limit=100000'
-      #   test: /\.(png|gif|jpg)$/
+      * loader: 'url-loader'
+        test: /\.(woff|otf|ttf|png|gif|jpg)$/
 
       # * loader : "file-loader"
       #   test   : /\.(ttf|eot|woff)$/
@@ -48,8 +45,8 @@ module.exports = do ->
       # * loader : "file-loader"
       #   test   : /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/
 
-      * loader: "file-loader?name=fonts/[name]-[hash].[ext]"
-        test: /\.(woff|woff2|eot|ttf)$/
+      # * loader: "file-loader?name=fonts/[name]-[hash].[ext]"
+      #   test: /\.(woff|woff2|eot|ttf)$/
 
       # * loaders: [ 'file?hash=sha512&digest=hex&name=[hash].[ext]', 'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false' ]
       #   test: /\.(jpe?g|png|gif|svg)$/i

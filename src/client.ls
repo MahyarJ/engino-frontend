@@ -14,6 +14,7 @@ require! {
   # './namespaces/testModule/incrementor'
   # './namespaces/testModule/comment'
   './namespaces/login'
+  './app.styl': css
 }
 
 injectTapEventPlugin()

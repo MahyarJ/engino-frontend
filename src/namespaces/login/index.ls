@@ -69,6 +69,8 @@ Home = createClass do
     MuiThemeProvider { muiTheme: getMuiTheme(muiTheme) },
       div {className: css.loginBox},
         Link {to: "/login"},
+          div className:css.fa,
+            "مهیار"
           RaisedButton do
             # label: 'Go For Login'
             label: 'بریم به لاگین'
