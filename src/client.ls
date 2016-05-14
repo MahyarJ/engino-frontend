@@ -13,7 +13,7 @@ require! {
   'react-tap-event-plugin': injectTapEventPlugin
   # './namespaces/testModule/incrementor'
   # './namespaces/testModule/comment'
-  './namespaces/login'
+  './namespaces/pages'
   './app.styl': css
 }
 

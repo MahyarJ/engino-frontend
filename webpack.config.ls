@@ -21,7 +21,7 @@ module.exports = do ->
 
   module:
     loaders:
-      * loader: \livescript
+      * loader: \react-hot!livescript-loader
         test: /\.ls$/
 
       * loader: \json
