@@ -1,45 +1,29 @@
 require! {
-  'react': { createClass, createElement, DOM }: React
+  'react': { createClass, createFactory, createElement, DOM }: React
   'react-dom': ReactDom
   'react-router': ReactRouter
   'redux': { createStore }: Redux
   './login.styl': css
-  'react-tap-event-plugin': injectTapEventPlugin
 
   'material-ui': MUI
-  'material-ui/styles/colors': Colors
-  'material-ui/styles/getMuiTheme': getMuiTheme
-  'material-ui/styles/MuiThemeProvider': MuiThemeProvider
-  'material-ui/styles/baseThemes/darkBaseTheme': darkBaseTheme
-
-  'material-ui/AppBar': AppBar
-  'material-ui/RaisedButton': RaisedButton
-  'material-ui/FlatButton': FlatButton
-  'material-ui/TextField': TextField
+  'material-ui/styles': MUIStyles
 }
-
-# injectTapEventPlugin!
-getMuiTheme = getMuiTheme.default
-MuiThemeProvider = MuiThemeProvider.default
-RaisedButton = RaisedButton.default
-AppBar = AppBar.default
-TextField = TextField.default
-FlatButton = FlatButton.default
 
 { div } = DOM
 { Router, Route, Link, IndexRoute, browserHistory } = engino.createFactory ReactRouter
 { RaisedButton, TextField, FlatButton, AppBar} = engino.createFactory MUI
+{ MuiThemeProvider, getMuiTheme, colors, darkBaseTheme } = engino.createFactory MUIStyles
 
 muiTheme = getMuiTheme do
-  isRtl: true
+  isRtl: yes
   palette:
-    textColor: Colors.pink500
+    textColor: colors.pink900
 
 console.log muiTheme
 
 LoginBox = createClass do
   render: ->
-    createElement MuiThemeProvider, { muiTheme: getMuiTheme(muiTheme) },
+    MuiThemeProvider { muiTheme },
       div {className: css.loginBox},
         TextField do
           label: \Username
