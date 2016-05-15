@@ -2,3 +2,5 @@ node_modules
 build
 xeno
 *.bat
+*.log
+*.DS_Store

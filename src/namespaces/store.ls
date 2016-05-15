@@ -1,7 +1,6 @@
 require! {
-	# We should import them one by one?
-  './testModule/reducer'
-  'redux': { createStore }
+  # './testModule/counter.reducer': reducer
+  'redux': { createStore, combineReducers }
 }
 
 createStore = if window.devToolsExtension
@@ -9,11 +8,23 @@ createStore = if window.devToolsExtension
 else
   createStore
 
-# combineReducers?
-module.exports = store = createStore reducer
+requireAll = (requireContext) ->
+  helpers = {}
+  for filename in requireContext.keys!
+    name = filename.replace(/^\.\//, '').replace(/\.ls$/, '').replace(".reducer", "")
+    helpers[name] = requireContext filename
+  helpers
 
-# how to make them reload automatically?
-# if module.hot?
-#   module.hot.accept './reducers', ->
-#     nextReducer = require './reducers'
-#     store.replaceReducer nextReducer
+getCombinedReducers = ->
+  requireContext = require.context './', true, /reducer\.ls$/
+  reducers = requireAll requireContext
+  combinedReducers = combineReducers reducers
+  { id: requireContext.id, combinedReducers }
+
+{ id, combinedReducers } = getCombinedReducers!
+module.exports = store = createStore combinedReducers
+
+if module.hot?
+  module.hot.accept id, ->
+    # https://github.com/webpack/webpack/issues/834#issuecomment-76590576
+    store.replaceReducer getCombinedReducers!.combinedReducers

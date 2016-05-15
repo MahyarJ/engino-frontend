@@ -15,8 +15,7 @@ require! {
 { RaisedButton } = engino.createFactory MUI
 { connect } = engino.createFactory ReactRedux
 
-mapStateToIncrementorProps = (number) ->
-  { number }
+mapStateToIncrementorProps = (store) -> { number: store[\testModule/counter] }
 
 module.exports = Incrementor = connect(mapStateToIncrementorProps, null) createClass do
   displayName: "Incrementor"
