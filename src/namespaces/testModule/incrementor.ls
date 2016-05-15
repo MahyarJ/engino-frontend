@@ -21,8 +21,7 @@ module.exports = Incrementor = connect(mapStateToIncrementorProps, null) createC
   displayName: "Incrementor"
 
   componentDidMount: ->
-    engino
-    .request \incrementor/get
+    engino.request \incrementor/get
     .then (number) ~>
       @props.dispatch do
         type: \set
