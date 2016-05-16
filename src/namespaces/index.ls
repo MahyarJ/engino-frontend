@@ -1,15 +1,16 @@
 require! {
   'react-dom': ReactDom
-  
+
   'react-router': ReactRouter
-  
+
   'material-ui/styles': MUIStyles
-  
+
   'react-redux': ReactRedux
   './store'
   './muiTheme'
 
   './login/Login'
+  './login/Signup'
   './login/ResetPassword'
   './testModule/Incrementor'
   './pages/Home'
@@ -26,5 +27,6 @@ ReactDom.render do
         Route { path: \/, component: Home }
         Route { path: \rp, component: ResetPassword }
         Route { path: \login, component: Login }
+        Route { path: \signup, component: Signup }
         Route { path: \inc, component: Incrementor }
   document.getElementById \pg

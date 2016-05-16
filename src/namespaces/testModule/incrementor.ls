@@ -1,11 +1,8 @@
 require! {
   'react': { createClass, { div }: DOM }: React
   'react-dom': ReactDom
-  
   'react-router': ReactRouter
-
   'material-ui': MUI
-  
   'react-redux': ReactRedux
 
   './Incrementor.styl': css

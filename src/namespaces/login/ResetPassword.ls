@@ -1,7 +1,7 @@
 require! {
   'react': { createClass, { div }: DOM }: React
   'react-router': ReactRouter
-  './ResetPassword.styl': css
+  './Login.styl': css
   'material-ui': MUI
   'material-ui/styles': MUIStyles
 }
@@ -11,19 +11,21 @@ require! {
 
 module.exports = ResetPassword = createClass do
   render: ->
-    div {className: css.container},
-      TextField do
-        label: 'Username or Email'
-        fullWidth: true
-        floatingLabelText: 'Username or Email'
+    div {className: css.pg},
+      div {className: css.bg}
+      div {className: css.container},
+        TextField do
+          label: 'Username or Email'
+          fullWidth: true
+          floatingLabelText: 'Username or Email'
 
-      RaisedButton do
-        label: 'Send Reset Password Email'
-        primary: true
-        fullWidth: true
-        className: css.button
-
-      Link {to: "/login"},
-        FlatButton do
-          label: 'Return'
+        RaisedButton do
+          label: 'Send Reset Password Email'
+          primary: true
+          fullWidth: true
           className: css.button
+
+        Link {to: "/login"},
+          FlatButton do
+            label: 'Return'
+            className: css.button

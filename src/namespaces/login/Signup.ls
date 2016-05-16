@@ -9,10 +9,11 @@ require! {
 { Link, browserHistory } = engino.createFactory ReactRouter
 { RaisedButton, FlatButton, TextField } = engino.createFactory MUI
 
-module.exports = LoginBox = createClass do
+module.exports = Signup = createClass do
   getInitialState: ->
     username: ""
     password: ""
+    confirmPassword: ""
     working: no
 
   render: ->
@@ -20,9 +21,9 @@ module.exports = LoginBox = createClass do
       div {className: css.bg}
       div {className: css.container},
         TextField do
-          label: \Username
+          label: \Email
           fullWidth: true
-          floatingLabelText: \Username
+          floatingLabelText: \Email
           onChange: ~> @setState { username: &1 }
 
         TextField do
@@ -32,8 +33,15 @@ module.exports = LoginBox = createClass do
           type: \password
           onChange: ~> @setState { password: &1 }
 
+        TextField do
+          label: 'Confirm Password'
+          fullWidth: true
+          floatingLabelText: 'Confirm Password'
+          type: \password
+          onChange: ~> @setState { confirmPassword: &1 }
+
         RaisedButton do
-          label: \Login
+          label: 'Sign Up'
           secondary: true
           disabled: @state.working
           className: css.button
@@ -45,12 +53,7 @@ module.exports = LoginBox = createClass do
               if result?
                 browserHistory.push \inc
 
-        Link {to: \rp, activeStyle: {color: \red}},
+        Link {to: \login, activeStyle: {}},
           FlatButton do
-            label: 'Forget Your Password?'
+            label: 'Return'
             className: css.button
-
-        Link {to: \signup, activeStyle: {}},
-          FlatButton do
-            label: 'You have not registered yet?'
-            className: css.regButton
