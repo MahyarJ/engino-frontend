@@ -14,8 +14,8 @@ module.exports = Home = createClass do
     div {className: css.loginBox},
       Link {to: "/login"},
         RaisedButton do
-          # label: 'Go For Login'
-          label: 'بریم به لاگین'
+          label: 'Go Login'
+          # label: 'بریم به لاگین'
           className: css.button
           secondary: true
           fullWidth: true

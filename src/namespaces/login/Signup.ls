@@ -11,9 +11,10 @@ require! {
 
 module.exports = Signup = createClass do
   getInitialState: ->
-    username: ""
+    email: ""
     password: ""
     confirmPassword: ""
+    emailTextFieldError: ""
     working: no
 
   render: ->
@@ -21,10 +22,12 @@ module.exports = Signup = createClass do
       div {className: css.bg}
       div {className: css.container},
         TextField do
+          id: \email
           label: \Email
           fullWidth: true
           floatingLabelText: \Email
-          onChange: ~> @setState { username: &1 }
+          errorText: @state.emailTextFieldError
+          onChange: ~> @setState { email: &1 }
 
         TextField do
           label: \Password
@@ -47,11 +50,13 @@ module.exports = Signup = createClass do
           className: css.button
           onClick: ~>
             @setState { working: yes }
-            engino.auth.login @state.username, @state.password
+            engino.auth.register @state.email, @state.password
             .then (result) ~>
               @setState { working: no }
               if result?
-                browserHistory.push \inc
+                if result.success is false
+                  @setState { emailTextFieldError: result.data }
+                console.log result
 
         Link {to: \login, activeStyle: {}},
           FlatButton do
