@@ -14,6 +14,7 @@ require! {
   './login/ResetPassword'
   './testModule/Incrementor'
   './pages/Home'
+  './pages/Portal'
 }
 
 { Router, Route, browserHistory } = engino.createFactory ReactRouter
@@ -28,5 +29,6 @@ ReactDom.render do
         Route { path: \rp, component: ResetPassword }
         Route { path: \login, component: Login }
         Route { path: \signup, component: Signup }
+        Route { path: \portal, component: Portal }
         Route { path: \inc, component: Incrementor }
   document.getElementById \pg

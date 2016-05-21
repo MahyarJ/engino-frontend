@@ -4,4 +4,4 @@ module.exports = muiTheme = getMuiTheme do
   isRtl: no
   fontFamily: "Iransans, Yekan, Roboto"
   palette:
-    textColor: colors.pink900
+    textColor: colors.cyan900
