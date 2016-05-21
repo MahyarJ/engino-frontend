@@ -16,28 +16,32 @@ module.exports = Portal = createClass do
   render: ->
     div {className: css.pg},
       div {className: css.bg}
-      div { className: css.tabsContainer },
-        Tabs { },
-          Tab { className: css.tab, label: 'Tab 1' },
-            div {}, 'First Content'
-          Tab { className: css.tab, label: 'Tab 2' },
-            div {}, 'Second Content'
-          Tab { className: css.tab, label: 'Tab 3' },
-            div {}, 'Third Content'
-          Tab { className: css.tab, label: 'Tab 4' },
-            div {}, 'Forth Content'
+      # div { className: css.tabsContainer },
+      # Tabs { },
+      #   Tab { className: css.tab, label: 'Tab 1' },
+      #     div {}, 'First Content'
+      #   Tab { className: css.tab, label: 'Tab 2' },
+      #     div {}, 'Second Content'
+      #   Tab { className: css.tab, label: 'Tab 3' },
+      #     div {}, 'Third Content'
+      #   Tab { className: css.tab, label: 'Tab 4' },
+      #     div {}, 'Forth Content'
       # AppBar { title: 'My Portal' }
       Drawer { open: true, className: css.drawer },
         List { },
           ListItem do
-            id: \userData
-            className: css.userData
+            className: css.avatar
             disabled: true
             leftAvatar: Avatar do
+              backgroundColor: colors.cyan900
               color: colors.white500
-              backgroundcolor: colors.cyan900
               size: 60
               children: 'A'
+          ListItem do
+            disabled: true
+            children: 'Your Name'
+            className: css.username
+          FlatButton { className: css.editProfile, label: 'Edit Profile' }
           Subheader { children: 'Main Items' }
           ListItem { primaryText: 'Item1' }
           ListItem { primaryText: 'Item2' }
