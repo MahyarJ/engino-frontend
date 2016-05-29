@@ -5,3 +5,6 @@ module.exports = muiTheme = getMuiTheme do
   fontFamily: "Iransans, Yekan, Roboto"
   palette:
     textColor: colors.cyan900
+
+if muiTheme.isRtl
+  document.body.style.direction = \rtl
