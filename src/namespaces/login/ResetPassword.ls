@@ -25,7 +25,9 @@ module.exports = ResetPassword = createClass do
           fullWidth: true
           className: css.button
 
-        Link {to: "/login"},
-          FlatButton do
-            label: 'Return'
-            className: css.button
+        # Link {to: "/login"},
+        FlatButton do
+          label: 'Return'
+          className: css.button
+          onClick: ~>
+              @context.router.push \login

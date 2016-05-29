@@ -1,6 +1,7 @@
 require! {
   # './testModule/counter.reducer': reducer
   'redux': { createStore, combineReducers }
+  'react-router-redux': { routerReducer }
 }
 
 createStore = if window.devToolsExtension
@@ -18,7 +19,9 @@ requireAll = (requireContext) ->
 getCombinedReducers = ->
   requireContext = require.context './', true, /reducer\.ls$/
   reducers = requireAll requireContext
-  combinedReducers = combineReducers reducers
+  combinedReducers = combineReducers do
+    ...reducers
+    routing: routerReducer
   { id: requireContext.id, combinedReducers }
 
 { id, combinedReducers } = getCombinedReducers!
