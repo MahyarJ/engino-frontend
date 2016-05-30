@@ -36,7 +36,7 @@ module.exports = createClass do
   render: ->
     Drawer { open: true, className: css.drawer },
       createElement SelectableList,
-        defaultValue: 1
+        defaultValue: 0
         children:
           ListItem do
             className: css.avatar
@@ -50,14 +50,9 @@ module.exports = createClass do
             disabled: true
             children: 'Your Name'
             className: css.username
-          FlatButton { className: css.editProfile, label: 'Edit Profile' }
-          Subheader { children: 'Main Items' }
-          ListItem { value: 1, primaryText: 'Item1' }
-          ListItem { value: 2, primaryText: 'Item2' }
-          ListItem { value: 3, primaryText: 'Item3' }
-          ListItem { value: 4, primaryText: 'Item4' }
-          Divider { }
-          Subheader { children: 'Second Items' }
-          ListItem { value: 5, primaryText: 'Item1' }
-          ListItem { value: 6, primaryText: 'Item2' }
-          ListItem { value: 7, primaryText: 'Item3' }
+          FlatButton className: css.editProfile, label: 'Edit Profile'
+          Subheader children: 'Main Items'
+          @props.items?.map (item, index) ->
+            ListItem key: index, value: index, primaryText: item.text, onTouchTap: item.onClick
+          # Divider null
+          # Subheader children: 'Second Items'

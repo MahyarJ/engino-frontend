@@ -19,9 +19,7 @@ requireAll = (requireContext) ->
 getCombinedReducers = ->
   requireContext = require.context './', true, /reducer\.ls$/
   reducers = requireAll requireContext
-  combinedReducers = combineReducers do
-    ...reducers
-    routing: routerReducer
+  combinedReducers = combineReducers reducers <<< routing: routerReducer
   { id: requireContext.id, combinedReducers }
 
 { id, combinedReducers } = getCombinedReducers!

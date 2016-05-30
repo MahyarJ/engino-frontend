@@ -34,6 +34,13 @@ ReactDom.render do
         Route { path: \rp, component: ResetPassword }
         Route { path: \login, component: Login }
         Route { path: \signup, component: Signup }
-        Route { path: \portal, component: Portal }
+        Route { path: \portal, component: Portal },
+          Route do 
+            path: \some
+            component: Login
+          Route do 
+            path: \somex
+            component: Incrementor
+
         Route { path: \inc, component: Incrementor }
   document.getElementById \pg
