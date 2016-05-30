@@ -1,11 +1,12 @@
 require! {
   'react-dom': ReactDom
-
+  'redux': { createStore, combineReducers, applyMiddleware }: Redux
+  'react-router-redux': { syncHistoryWithStore }
   'react-router': ReactRouter
-
+  'react-tap-event-plugin': injectTapEventPlugin
   'material-ui/styles': MUIStyles
-
   'react-redux': ReactRedux
+
   './store'
   './muiTheme'
 
@@ -21,10 +22,14 @@ require! {
 { MuiThemeProvider } = engino.createFactory MUIStyles
 { Provider } = engino.createFactory ReactRedux
 
+history = syncHistoryWithStore browserHistory, store
+
+injectTapEventPlugin!
+
 ReactDom.render do
   Provider { store },
     MuiThemeProvider { muiTheme },
-      Router { history: browserHistory },
+      Router { history },
         Route { path: \/, component: Home }
         Route { path: \rp, component: ResetPassword }
         Route { path: \login, component: Login }

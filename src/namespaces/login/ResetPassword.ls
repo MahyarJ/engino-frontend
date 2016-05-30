@@ -10,6 +10,10 @@ require! {
 { RaisedButton, FlatButton, TextField } = engino.createFactory MUI
 
 module.exports = ResetPassword = createClass do
+  contextTypes:
+    router: ->
+      React.PropTypes.func.isRequired
+
   render: ->
     div {className: css.pg},
       div {className: css.bg}
@@ -30,4 +34,4 @@ module.exports = ResetPassword = createClass do
           label: 'Return'
           className: css.button
           onClick: ~>
-              @context.router.push \login
+            @context.router.push \login
