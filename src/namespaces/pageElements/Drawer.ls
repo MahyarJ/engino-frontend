@@ -26,33 +26,35 @@ wrapState = (ComposedComponent) ->
 
 SelectableList = MakeSelectable List
 SelectableList = wrapState SelectableList
+SelectableList = engino.createFactory SelectableList
 
 module.exports = createClass do
   displayName: \Drawer
+  # getInitialState: ->
+  #   drawerOpen: yes
 
   handleToggleDrawer: ->
     @setState { drawerOpen: !@state.drawerOpen }
 
   render: ->
     Drawer { open: true, className: css.drawer },
-      createElement SelectableList,
-        defaultValue: 0
-        children:
-          ListItem do
-            className: css.avatar
-            disabled: true
-            leftAvatar: Avatar do
-              backgroundColor: colors.cyan900
-              color: colors.white500
-              size: 60
-              children: 'A'
-          ListItem do
-            disabled: true
-            children: 'Your Name'
-            className: css.username
-          FlatButton className: css.editProfile, label: 'Edit Profile'
-          Subheader children: 'Main Items'
-          @props.items?.map (item, index) ->
-            ListItem key: index, value: index, primaryText: item.text, onTouchTap: item.onClick
-          # Divider null
-          # Subheader children: 'Second Items'
+      SelectableList { defaultValue: 1 },
+        ListItem do
+          className: css.avatar
+          disabled: true
+          leftAvatar: Avatar do
+            backgroundColor: colors.cyan900
+            color: colors.white500
+            size: 60
+            children: 'A'
+        ListItem do
+          disabled: true
+          children: 'Your Name'
+          className: css.username
+        FlatButton className: css.editProfile, label: 'Edit Profile'
+        Subheader children: 'Main Items'
+        @props.items?.map (item, index) ->
+          Link { style: {textDecoration: \none}, activeStyle: {}, key: item.key, to: item.link },
+            ListItem do
+              value: item.key
+              primaryText: item.text

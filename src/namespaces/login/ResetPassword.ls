@@ -9,7 +9,7 @@ require! {
 { Link } = engino.createFactory ReactRouter
 { RaisedButton, FlatButton, TextField } = engino.createFactory MUI
 
-module.exports = ResetPassword = createClass do
+module.exports = createClass do
   contextTypes:
     router: ->
       React.PropTypes.func.isRequired

@@ -1,5 +1,5 @@
 require! {
-  'react': { createClass, { div }: DOM }: React
+  'react': { createClass, createElement, { div }: DOM }: React
   './Portal.styl': css
   '../pageElements/Drawer'
   '../testModule/Incrementor'
@@ -12,18 +12,26 @@ Login = engino.createFactory Login
 
 module.exports = createClass do
   displayName: \Portal
+  contextTypes:
+    router: ->
+      React.PropTypes.func.isRequired
 
   getInitialState: ->
     appModule: Incrementor
-  
+
   render: ->
     div { className: css.container },
       div {className: css.bg}
       div {className: css.app},
-        @state.appModule null
+        @props.module
+        # createElement @props.routes?[@props.routes?.length - 1]?.component
       div null,
-        Drawer items:
-          * text: "Incrementor"
-            onClick: ~> @setState appModule: Incrementor
-          * text: "Login seriously"
-            onClick: ~> @setState appModule: Login
+        Drawer do
+          defaultValue: null
+          items:
+            * key: \incrementor
+              text: "Show Incrementor"
+              link: \/portal/incrementor
+            * key: \login
+              text: "Show Login"
+              link: \/portal/login

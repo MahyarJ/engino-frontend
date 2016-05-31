@@ -21,6 +21,7 @@ require! {
 { Router, Route, browserHistory } = engino.createFactory ReactRouter
 { MuiThemeProvider } = engino.createFactory MUIStyles
 { Provider } = engino.createFactory ReactRedux
+# Portal = engino.createFactory Portal
 
 history = syncHistoryWithStore browserHistory, store
 
@@ -35,12 +36,8 @@ ReactDom.render do
         Route { path: \login, component: Login }
         Route { path: \signup, component: Signup }
         Route { path: \portal, component: Portal },
-          Route do 
-            path: \some
-            component: Login
-          Route do 
-            path: \somex
-            component: Incrementor
+          Route { path: \login, components: { module: Login } }
+          Route { path: \incrementor, components: { module: Incrementor } }
 
         Route { path: \inc, component: Incrementor }
   document.getElementById \pg

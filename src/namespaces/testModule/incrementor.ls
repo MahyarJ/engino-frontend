@@ -13,7 +13,6 @@ require! {
 { connect } = engino.createFactory ReactRedux
 
 mapStateToIncrementorProps = (store) ->
-  console.log store
   { number: store[\testModule/counter] }
 
 module.exports = Incrementor = connect(mapStateToIncrementorProps, null) createClass do
