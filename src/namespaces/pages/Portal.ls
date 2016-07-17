@@ -12,9 +12,9 @@ Login = engino.createFactory Login
 
 module.exports = createClass do
   displayName: \Portal
-  contextTypes:
-    router: ->
-      React.PropTypes.func.isRequired
+  # contextTypes:
+  #   router: ->
+  #     React.PropTypes.func.isRequired
 
   getInitialState: ->
     appModule: Incrementor

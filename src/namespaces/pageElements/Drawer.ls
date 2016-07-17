@@ -54,7 +54,8 @@ module.exports = createClass do
         FlatButton className: css.editProfile, label: 'Edit Profile'
         Subheader children: 'Main Items'
         @props.items?.map (item, index) ->
-          Link { style: {textDecoration: \none}, activeStyle: {}, key: item.key, to: item.link },
+          Link { style: {textDecoration: \none}, activeStyle: {}, key: item.key, to: item.link, onClick: -> console.log 'link clicked' },
             ListItem do
               value: item.key
               primaryText: item.text
+              onClick: -> 'item clicked'
