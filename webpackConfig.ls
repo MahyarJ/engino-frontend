@@ -1,5 +1,6 @@
 require! {
   'path'
+  'browser-sync-webpack-plugin': BrowserSyncPlugin
 }
 
 module.exports = ({projectDir, index}) ->
@@ -24,6 +25,18 @@ module.exports = ({projectDir, index}) ->
       '$ens': path.join __dirname, 'src/namespaces'
       '$engino': path.join __dirname, './'
       '$ns': path.join projectDir, 'src/namespaces'
+
+  plugins:
+    * new BrowserSyncPlugin do
+        {
+          host:  'localhost'
+          port:  8081
+          proxy: 'http://localhost:8081/'
+        }
+        {
+          reload: no
+        }
+    ...
 
   output:
     path: path.join projectDir, './dist'
