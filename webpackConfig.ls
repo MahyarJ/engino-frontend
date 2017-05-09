@@ -9,7 +9,7 @@ module.exports = ({projectDir, index}) ->
   entry:
     index:
       if devMode
-        'webpack-dev-server/client?http://localhost:8083'
+        'webpack-dev-server/client?http://localhost:' + process.env.PORT
         'webpack/hot/only-dev-server'
         index
       else
@@ -30,8 +30,8 @@ module.exports = ({projectDir, index}) ->
     * new BrowserSyncPlugin do
         {
           host:  'localhost'
-          port:  8083
-          proxy: 'http://localhost:8083/'
+          port:  process.env.PORT
+          proxy: 'http://localhost:' + process.env.PORT + '/'
         }
         {
           reload: no

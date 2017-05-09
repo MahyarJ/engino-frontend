@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "dev": "webpack-dev-server --inline --hot --host localhost --port 8083 --history-api-fallback",
-    "build:production": "cross-env NODE_ENV=production webpack -p"
+    "dev": "cross-env PORT=8083 webpack-dev-server --inline --hot --host localhost --port 8083 --history-api-fallback",
+    "build": "cross-env NODE_ENV=production webpack -p"
   },
   "keywords": [],
   "author": "",
