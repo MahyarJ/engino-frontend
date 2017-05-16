@@ -3,4 +3,5 @@ build
 xeno
 *.bat
 *.log
+*.log.*
 *.DS_Store

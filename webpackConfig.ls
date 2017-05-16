@@ -1,6 +1,6 @@
 require! {
   'path'
-  'browser-sync-webpack-plugin': BrowserSyncPlugin
+  # 'browser-sync-webpack-plugin': BrowserSyncPlugin
 }
 
 module.exports = ({projectDir, index}) ->
@@ -26,17 +26,17 @@ module.exports = ({projectDir, index}) ->
       '$engino': path.join __dirname, './'
       '$ns': path.join projectDir, 'src/namespaces'
 
-  plugins:
-    * new BrowserSyncPlugin do
-        {
-          host:  'localhost'
-          port:  process.env.PORT
-          proxy: 'http://localhost:' + process.env.PORT + '/'
-        }
-        {
-          reload: no
-        }
-    ...
+  # plugins:
+  #   * new BrowserSyncPlugin do
+  #       {
+  #         host:  'localhost'
+  #         port:  process.env.PORT
+  #         proxy: 'http://localhost:' + process.env.PORT + '/'
+  #       }
+  #       {
+  #         reload: no
+  #       }
+  #   ...
 
   output:
     path: path.join projectDir, './dist'
@@ -50,7 +50,7 @@ module.exports = ({projectDir, index}) ->
 
   module:
     loaders:
-      * loader: if devMode then \react-hot!livescript else \livescript
+      * loader: if devMode then \react-hot-loader/webpack!livescript else \livescript
         test: /\.ls$/
 
       * loader: \json
